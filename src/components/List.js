@@ -1,8 +1,19 @@
 import React from 'react';
 
-const List = ({ todos }) => {
+const List = ({ todos, deleteTodo }) => {
   return todos.map((todo, index) => {
-    return <li key={index}>{todo}</li>;
+    return (
+      <li key={index}>
+        {todo}
+        <button
+          onClick={() => {
+            deleteTodo(index);
+          }}
+        >
+          削除
+        </button>
+      </li>
+    );
   });
 };
 

@@ -12,6 +12,15 @@ const App = () => {
     setTodos((prevTodos) => [...prevTodos, new_todo]);
   };
 
+  const deleteTodo = (index) => {
+    setTodos((prevTodos) => {
+      const l_newTodos = [...prevTodos];
+      l_newTodos.splice(index, 1);
+
+      return l_newTodos;
+    });
+  };
+
   return (
     <>
       <h1>ToDo</h1>
@@ -19,7 +28,7 @@ const App = () => {
         <input type="text" id="text_new_todo" />
         <button onClick={addTodo}>追加</button>
         <ul>
-          <List todos={todos} />
+          <List todos={todos} deleteTodo={deleteTodo} />
         </ul>
       </div>
     </>
