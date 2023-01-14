@@ -1,13 +1,22 @@
 import React, { useState } from 'react';
 import List from './components/List';
+import { statusYet } from './constants';
 
 const App = () => {
-  const [todos, setTodos] = useState(['ToDo1', 'ToDo2']);
+  const iniTodos = [
+    { title: 'ToDo1', status: statusYet },
+    { title: 'ToDo2', status: statusYet },
+  ];
+
+  const [todos, setTodos] = useState(iniTodos);
 
   const addTodo = () => {
-    const eleTextNewTodo = document.querySelector('#text_new_todo');
-    const new_todo = eleTextNewTodo.value;
-    eleTextNewTodo.value = '';
+    const eleTitleNewTodo = document.querySelector('#title_new_todo');
+    const new_todo = {
+      title: eleTitleNewTodo.value,
+      status: statusYet,
+    };
+    eleTitleNewTodo.value = '';
 
     setTodos((prevTodos) => [...prevTodos, new_todo]);
   };
@@ -25,7 +34,7 @@ const App = () => {
     <>
       <h1>ToDo</h1>
       <div>
-        <input type="text" id="text_new_todo" />
+        <input type="text" id="title_new_todo" />
         <button onClick={addTodo}>追加</button>
         <ul>
           <List todos={todos} deleteTodo={deleteTodo} />
