@@ -5,8 +5,7 @@ import './../styles/style.css';
 const List = ({ todos, deleteTodo, switchReadonly }) => {
   return todos.map((todo, index) => {
     return (
-      <li key={index}>
-        <span>{index}</span>
+      <li key={todo.id}>
         <input type="text" className="title_list_todo" defaultValue={todo.title} readOnly={todo.readonly} />
 
         <select>

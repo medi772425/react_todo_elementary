@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 import List from './components/List';
+import { v4 as uuidv4 } from 'uuid';
 import { statusYet } from './constants';
 
 const App = () => {
-  const iniTodos = [
-    { title: 'ToDo1', status: statusYet, readonly: true },
-    { title: 'ToDo2', status: statusYet, readonly: true },
-  ];
+  const iniTodos = [];
 
   const [todos, setTodos] = useState(iniTodos);
 
@@ -16,6 +14,7 @@ const App = () => {
       title: eleTitleNewTodo.value,
       status: statusYet,
       readonly: true,
+      id: uuidv4(),
     };
     eleTitleNewTodo.value = '';
 
