@@ -2,11 +2,17 @@ import React from 'react';
 import { statusYet, statusStarted, statusComplete } from '../constants';
 import './../styles/style.css';
 
-const List = ({ todos, deleteTodo, switchReadonly }) => {
+const List = ({ todos, deleteTodo, switchReadonly, editTodoTitle }) => {
   return todos.map((todo, index) => {
     return (
       <li key={todo.id}>
-        <input type="text" className="title_list_todo" defaultValue={todo.title} readOnly={todo.readonly} />
+        <input
+          type="text"
+          id={`title_list_todo${index}`}
+          className="title_list_todo"
+          defaultValue={todo.title}
+          readOnly={todo.readonly}
+        />
 
         <select>
           <option value={statusYet}>未着手</option>
@@ -26,6 +32,8 @@ const List = ({ todos, deleteTodo, switchReadonly }) => {
           <button
             onClick={() => {
               switchReadonly(index, true);
+              const newTitle = document.querySelector(`#title_list_todo${index}`).value;
+              editTodoTitle(index, newTitle);
             }}
           >
             編集終了
