@@ -50,6 +50,15 @@ const App = () => {
     });
   };
 
+  const editTodoStatus = (index, newStatus) => {
+    setTodos((prevTodos) => {
+      const newTodos = [...prevTodos];
+      newTodos[index].status = newStatus;
+
+      return newTodos;
+    });
+  };
+
   return (
     <>
       <h1>ToDo</h1>
@@ -57,7 +66,13 @@ const App = () => {
         <input type="text" id="title_new_todo" />
         <button onClick={addTodo}>追加</button>
         <ul>
-          <List todos={todos} deleteTodo={deleteTodo} switchReadonly={switchReadonly} editTodoTitle={editTodoTitle} />
+          <List
+            todos={todos}
+            deleteTodo={deleteTodo}
+            switchReadonly={switchReadonly}
+            editTodoTitle={editTodoTitle}
+            editTodoStatus={editTodoStatus}
+          />
         </ul>
       </div>
     </>

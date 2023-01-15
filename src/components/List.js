@@ -2,7 +2,7 @@ import React from 'react';
 import { statusYet, statusStarted, statusComplete } from '../constants';
 import './../styles/style.css';
 
-const List = ({ todos, deleteTodo, switchReadonly, editTodoTitle }) => {
+const List = ({ todos, deleteTodo, switchReadonly, editTodoTitle, editTodoStatus }) => {
   return todos.map((todo, index) => {
     return (
       <li key={todo.id}>
@@ -14,7 +14,11 @@ const List = ({ todos, deleteTodo, switchReadonly, editTodoTitle }) => {
           readOnly={todo.readonly}
         />
 
-        <select>
+        <select
+          onChange={(event) => {
+            editTodoStatus(index, event.target.value);
+          }}
+        >
           <option value={statusYet}>未着手</option>
           <option value={statusStarted}>進行中</option>
           <option value={statusComplete}>完了</option>
