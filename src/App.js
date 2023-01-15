@@ -4,8 +4,8 @@ import { statusYet } from './constants';
 
 const App = () => {
   const iniTodos = [
-    { title: 'ToDo1', status: statusYet },
-    { title: 'ToDo2', status: statusYet },
+    { title: 'ToDo1', status: statusYet, readonly: true },
+    { title: 'ToDo2', status: statusYet, readonly: true },
   ];
 
   const [todos, setTodos] = useState(iniTodos);
@@ -15,6 +15,7 @@ const App = () => {
     const new_todo = {
       title: eleTitleNewTodo.value,
       status: statusYet,
+      readonly: true,
     };
     eleTitleNewTodo.value = '';
 
@@ -23,10 +24,21 @@ const App = () => {
 
   const deleteTodo = (index) => {
     setTodos((prevTodos) => {
-      const l_newTodos = [...prevTodos];
-      l_newTodos.splice(index, 1);
+      const newTodos = [...prevTodos];
+      newTodos.splice(index, 1);
 
-      return l_newTodos;
+      console.log(newTodos);
+
+      return newTodos;
+    });
+  };
+
+  const switchReadonly = (index, readonly) => {
+    setTodos((prevTodos) => {
+      const newTodos = [...prevTodos];
+      newTodos[index].readonly = readonly;
+
+      return newTodos;
     });
   };
 
@@ -37,7 +49,7 @@ const App = () => {
         <input type="text" id="title_new_todo" />
         <button onClick={addTodo}>追加</button>
         <ul>
-          <List todos={todos} deleteTodo={deleteTodo} />
+          <List todos={todos} deleteTodo={deleteTodo} switchReadonly={switchReadonly} />
         </ul>
       </div>
     </>
