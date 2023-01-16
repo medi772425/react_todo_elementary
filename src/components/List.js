@@ -1,9 +1,13 @@
 import React from 'react';
-import { statusYet, statusStarted, statusComplete } from '../constants';
+import StateSelect from './StateSelect';
 import './../styles/style.css';
 
 const List = ({ todos, deleteTodo, switchReadonly, editTodoTitle, editTodoStatus }) => {
   return todos.map((todo, index) => {
+    if (todo.is_show === false) {
+      return '';
+    }
+
     return (
       <li key={todo.id}>
         <input
@@ -14,15 +18,12 @@ const List = ({ todos, deleteTodo, switchReadonly, editTodoTitle, editTodoStatus
           readOnly={todo.readonly}
         />
 
-        <select
+        <StateSelect
           onChange={(event) => {
             editTodoStatus(index, event.target.value);
           }}
-        >
-          <option value={statusYet}>未着手</option>
-          <option value={statusStarted}>進行中</option>
-          <option value={statusComplete}>完了</option>
-        </select>
+          status={todo.status}
+        />
 
         {todo.readonly ? (
           <button

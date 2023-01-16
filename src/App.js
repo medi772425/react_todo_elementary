@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import List from './components/List';
 import { v4 as uuidv4 } from 'uuid';
+import List from './components/List';
+import Filter from './components/Filter';
 import { statusYet } from './constants';
 
 const App = () => {
@@ -15,6 +16,7 @@ const App = () => {
       status: statusYet,
       readonly: true,
       id: uuidv4(),
+      is_show: true,
     };
     eleTitleNewTodo.value = '';
 
@@ -53,7 +55,7 @@ const App = () => {
   const editTodoStatus = (index, newStatus) => {
     setTodos((prevTodos) => {
       const newTodos = [...prevTodos];
-      newTodos[index].status = newStatus;
+      newTodos[index].status = Number(newStatus);
 
       return newTodos;
     });
@@ -65,6 +67,7 @@ const App = () => {
       <div>
         <input type="text" id="title_new_todo" />
         <button onClick={addTodo}>追加</button>
+        <Filter todos={todos} setTodos={setTodos} />
         <ul>
           <List
             todos={todos}
