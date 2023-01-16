@@ -63,8 +63,8 @@ const App = () => {
 
   return (
     <>
-      <h1>ToDo</h1>
-      <div>
+      <div className="wrapper">
+        <h1>ToDo</h1>
         <input type="text" id="title_new_todo" />
         <button onClick={addTodo}>追加</button>
         <Filter todos={todos} setTodos={setTodos} />

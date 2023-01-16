@@ -1,5 +1,19 @@
+.wrapper {
+  width: 500px;
+  margin: 0 auto;
+  text-align: left;
+}
+
 .title_list_todo:read-only {
   border: none;
   background-color: white;
   outline: none;
+}
+
+.blue {
+  color: blue;
+}
+
+.green {
+  color: green;
 }
