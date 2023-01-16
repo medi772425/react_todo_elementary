@@ -7,16 +7,16 @@ const Filter = ({ todos, setTodos }) => {
     const filterStatus = Number(document.querySelector('#select_filter').value);
 
     const filtered = todos.map((todo) => {
-      let is_show = true;
+      let isShow = true;
       if (filterText !== '' && todo.title.toString().indexOf(filterText) < 0) {
-        is_show = false;
+        isShow = false;
       }
 
       if (filterStatus !== 0 && todo.status !== filterStatus) {
-        is_show = false;
+        isShow = false;
       }
 
-      todo.is_show = is_show;
+      todo.isShow = isShow;
 
       return todo;
     });

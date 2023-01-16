@@ -11,24 +11,24 @@ const App = () => {
 
   const addTodo = () => {
     const eleTitleNewTodo = document.querySelector('#title_new_todo');
-    const new_todo = {
+    const createdDay = new Date().toLocaleDateString();
+    const newTodo = {
       title: eleTitleNewTodo.value,
       status: statusYet,
       readonly: true,
       id: uuidv4(),
-      is_show: true,
+      createdDay,
+      isShow: true,
     };
     eleTitleNewTodo.value = '';
 
-    setTodos((prevTodos) => [...prevTodos, new_todo]);
+    setTodos((prevTodos) => [...prevTodos, newTodo]);
   };
 
   const deleteTodo = (index) => {
     setTodos((prevTodos) => {
       const newTodos = [...prevTodos];
       newTodos.splice(index, 1);
-
-      console.log(newTodos);
 
       return newTodos;
     });

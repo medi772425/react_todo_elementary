@@ -4,7 +4,7 @@ import './../styles/style.css';
 
 const List = ({ todos, deleteTodo, switchReadonly, editTodoTitle, editTodoStatus }) => {
   return todos.map((todo, index) => {
-    if (todo.is_show === false) {
+    if (todo.isShow === false) {
       return '';
     }
 
@@ -52,6 +52,8 @@ const List = ({ todos, deleteTodo, switchReadonly, editTodoTitle, editTodoStatus
         >
           削除
         </button>
+
+        <span>作成日:{todo.createdDay}</span>
       </li>
     );
   });
